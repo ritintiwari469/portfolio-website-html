@@ -388,8 +388,7 @@
       </div>
     </div>
     <div class="hero-photo">
-      <img id="heroImage" src="./images/ritintiwari.jpg" alt="Profile picture of Ritin Tiwari" loading="lazy"
-        decoding="async">
+      <img id="heroImage" src="./images/ritintiwari.jpg" alt="Profile picture of Ritin Tiwari" loading="lazy">
     </div>
   </section>
 
@@ -418,6 +417,7 @@
       <input id="name" type="text" name="from_name" placeholder="Your name" required>
       <input id="email" type="email" name="from_email" placeholder="Your email" required>
       <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+      <div class="g-recaptcha" data-sitekey="6LeU_cMqAAAAANEQXkCpLDXkm_g5w-qZpgDIaOEb"></div>
       <button type="submit">Send Message</button>
       <div class="form-status" id="formStatus"></div>
     </form>
@@ -431,57 +431,58 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
-    // Load data from JSON
+    // Load data.json dynamically
     fetch('./data.json')
       .then(res => res.json())
       .then(data => {
+        // HERO
         document.getElementById('heroName').textContent = data.hero.name;
         document.getElementById('heroDesc').textContent = data.hero.description;
         document.getElementById('heroImage').src = data.hero.image;
         document.getElementById('cvLink').href = data.hero.cv;
 
+        // Typing effect
         new Typed('#heroRole', {
           strings: data.hero.roles,
           typeSpeed: 70,
           backSpeed: 70,
           backDelay: 1600,
-          loop: true,
-          smartBackspace: false,
-          showCursor: true,
-          cursorChar: '|'
+          loop: true
         });
 
+        // Skills
         const sg = document.getElementById('skillsGrid');
-        sg.innerHTML = '';
         data.skills.forEach(s => {
           sg.innerHTML += `<div class="card"><h3>${s.title}</h3><p>${s.items.join(', ')}</p></div>`;
         });
 
+        // Projects
         const pg = document.getElementById('projectsGrid');
-        pg.innerHTML = '';
         data.projects.forEach((p, i) => {
-          const full = p.description;
-          const short = full.length > 130 ? full.slice(0, 130) + '...' : full;
+          const short = p.description.length > 130 ? p.description.slice(0, 130) + "..." : p.description;
           pg.innerHTML += `
             <div class="card">
-              <img class="thumb" src="${p.image}" alt="${p.title}" loading="lazy" decoding="async">
+              <img class="thumb" src="${p.image}" alt="${p.title}" loading="lazy">
               <h3><a class="link-primary" href="${p.link}" target="_blank">${p.title}</a></h3>
               <p id="desc-${i}">${short}</p>
               <div class="project-actions">
-                ${full.length > 130 ? `<button class="read-more-btn" onclick="toggleDesc(${i}, \`${full.replace(/`/g, '\\`')}\`)">Read More</button>` : ''}
+                ${p.description.length > 130 ? `<button class="read-more-btn" onclick="toggleDesc(${i}, \`${p.description.replace(/`/g, '\\`')}\`)">Read More</button>` : ""}
                 <a class="link-primary" href="${p.link}" target="_blank">View</a>
               </div>
             </div>`;
         });
 
+        // About
         document.getElementById('aboutText').textContent = data.about.text;
 
-        const social = `
+        // Footer Links
+        document.getElementById('footerLinks').innerHTML = `
           <a href="${data.contact.linkedin}" target="_blank"><i class="fa fa-linkedin"></i></a>
           <a href="${data.contact.github}" target="_blank"><i class="fa fa-github"></i></a>
           <a href="mailto:${data.contact.email}"><i class="fa fa-envelope"></i></a>`;
-        document.getElementById('footerLinks').innerHTML = social;
         document.getElementById('year').textContent = new Date().getFullYear();
       });
 
@@ -492,39 +493,40 @@
       else { d.textContent = full.slice(0, 130) + '...'; btn.textContent = 'Read More'; }
     }
 
-    // Contact form via serverless function
-    document.getElementById('contactForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const status = document.getElementById('formStatus');
-      status.textContent = 'Sending...';
+// ✅ EmailJS Init
+    (function () {
+      emailjs.init("KA107kypAx9LT74DZ");
+    })();
 
-      const body = {
-        from_name: document.getElementById('name').value,
-        from_email: document.getElementById('email').value,
-        message: document.getElementById('message').value,
-        to_name: 'Ritin'
+    // ✅ Form Submission with reCAPTCHA
+    document.getElementById("contactForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const status = document.getElementById("formStatus");
+      status.textContent = "Sending...";
+
+      const recaptcha = grecaptcha.getResponse();
+      if (!recaptcha) {
+        status.textContent = "❌ Please complete the reCAPTCHA.";
+        return;
+      }
+
+      const params = {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+        "g-recaptcha-response": recaptcha
       };
 
       try {
-        const res = await fetch('/api/sendEmail', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body)
-        });
-
-        const data = await res.json();
-
-        if (data.success) {
-          status.textContent = '✅ Message sent!';
-          e.target.reset();
-        } else {
-          status.textContent = '❌ Failed to send. Try again.';
-        }
+        await emailjs.send("service_cbx7wvf", "template_8yjngxz", params);
+        status.textContent = "✅ Thank you for reaching out! I will get in touch with you shortly.";
+        e.target.reset();
+        grecaptcha.reset();
       } catch (err) {
-        status.textContent = '❌ Error sending message.';
+        console.error(err);
+        status.textContent = "❌ Oops! Something went wrong. Please try again later.";
       }
     });
   </script>
 </body>
-
 </html>

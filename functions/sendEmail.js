@@ -1,8 +1,13 @@
-import emailjs from 'emailjs-com';
+// pages/api/sendEmail.js
+import emailjs from "emailjs-com";
 
-export async function handler(event, context) {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, error: "Method not allowed" });
+  }
+
   try {
-    const { to_name, from_name, message } = JSON.parse(event.body);
+    const { to_name, from_name, message } = req.body;
 
     const result = await emailjs.send(
       process.env.EMAILJS_SERVICE_ID,
@@ -11,14 +16,8 @@ export async function handler(event, context) {
       process.env.EMAILJS_PUBLIC_KEY
     );
 
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ success: true, result }),
-    };
+    res.status(200).json({ success: true, result });
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ success: false, error: error.message }),
-    };
+    res.status(500).json({ success: false, error: error.message });
   }
 }
