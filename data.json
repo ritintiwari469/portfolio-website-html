@@ -1,27 +1,27 @@
 {
   "hero": {
     "name": "Ritin Tiwari",
-    "roles": ["Web Developer", "Frontend Developer","React.js","WordPress Developer"],
+    "roles": ["Web Developer", "Frontend Developer", "React.js", "WordPress Developer"],
     "description": "I'm a passionate Web Developer with 2 years of experience building fast, responsive websites and applications using React.js and WordPress. I focus on clean UI, API integration, performance, and scalable solutions tailored to user needs.",
-    "cv": "https://drive.google.com/uc?export&id=1i3Q7eiEB1xLZmQxEz2xzxLIA1evCFS58",
+    "cv": "https://drive.google.com/file/d/1U2usGcdWLuWSW__HFD_UpfWKsr0IagKR/view?usp=sharing",
     "image": "./images/ritintiwari.jpg"
   },
   "skills": [
     {
-      "title": "Languages",
+      "title": "Programming Languages",
       "items": ["JavaScript", "TypeScript", "PHP", "Python", "HTML", "CSS"]
     },
     {
-      "title": "Frameworks & Libraries",
-      "items": ["React.js", "Redux", "Node.js", "Express.js", "jQuery", "WordPress", "WooCommerce"]
-    },
-    {
-      "title": "UI Tools",
+      "title": "UI Frameworks",
       "items": ["TailwindCSS", "Bootstrap", "ShadCN"]
     },
     {
-      "title": "Databases",
-      "items": ["MySQL", "MongoDB", "PostgreSQL"]
+      "title": "Frameworks & Libraries",
+      "items": ["jQuery", "React.js", "Redux", "Node.js", "Express.js", "React Hook Form", "Zod", "WordPress", "WooCommerce"]
+    },
+    {
+      "title": "Database Technologies",
+      "items": ["SQL", "MySQL", "MongoDB"]
     }
   ],
   "projects": [
