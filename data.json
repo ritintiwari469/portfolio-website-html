@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "name": "Ritin Tiwari",
+    "roles": ["Web Developer", "Frontend Developer","React.js","WordPress Developer"],
+    "description": "I'm a passionate Web Developer with 2 years of experience building fast, responsive websites and applications using React.js and WordPress. I focus on clean UI, API integration, performance, and scalable solutions tailored to user needs.",
+    "cv": "https://drive.google.com/uc?export&id=1i3Q7eiEB1xLZmQxEz2xzxLIA1evCFS58",
+    "image": "./images/ritintiwari.jpg"
+  },
+  "skills": [
+    {
+      "title": "Languages",
+      "items": ["JavaScript", "TypeScript", "PHP", "Python", "HTML", "CSS"]
+    },
+    {
+      "title": "Frameworks & Libraries",
+      "items": ["React.js", "Redux", "Node.js", "Express.js", "jQuery", "WordPress", "WooCommerce"]
+    },
+    {
+      "title": "UI Tools",
+      "items": ["TailwindCSS", "Bootstrap", "ShadCN"]
+    },
+    {
+      "title": "Databases",
+      "items": ["MySQL", "MongoDB", "PostgreSQL"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Agorameter",
+      "image": "./images/AgoraChangelog.png",
+      "link": "https://www.agora-energiewende.org/data-tools/agorameter/history",
+      "description": "Developed an interactive energy data visualization platform for Agora Energiewende (Germany). Built reusable React components for a customizable data dashboard, implemented changelog functionality with like/dislike interactions, and added browser fingerprinting with user tracking to improve analytics. Leveraged React Hook Form for robust validation and Tailwind-inspired styling for a responsive, clean UI."
+    },
+    {
+      "title": "CVI Websites",
+      "image": "./images/california-vascular-interventional.png",
+      "link": "http://cvithyroidcenter.com/",
+      "description": "Designed, deployed, and maintained six medical websites for California Vascular & Interventional centers. Used WordPress builders (Elementor, Gutenberg, WPBakery) to create responsive layouts. Implemented OTP-based email validation to reduce spam by 40%, optimized page speed, and ensured SEO-friendly structure. Handled continuous bug fixes, feature requests, and content updates for six clinics."
+    },
+    {
+      "title": "Defenda.eu",
+      "image": "./images/defenda.eu.png",
+      "link": "https://defenda.eu/",
+      "description": "Built a responsive eCommerce platform for a European luxury yacht accessory brand. Implemented a custom 'Add to Quote' feature to replace a traditional checkout flow, integrated Mailchimp for automated campaigns, and optimized SEO for international reach. Ensured seamless Stripe payment support and responsive performance across devices using WooCommerce, PHP, and custom WordPress development."
+    },
+    {
+      "title": "Ostnica Theme",
+      "image": "./images/ostnica-theme.png",
+      "link": "https://ostnica.codeholic.in/",
+      "description": "Developed a scalable, reusable WordPress theme from scratch with customizable design options for client flexibility. Added screen-specific settings, advanced UI/UX improvements, and multi-unit styling capabilities. Maintained clean, modular JavaScript and PHP code for easier scaling, debugging, and long-term sustainability. Extensively tested for cross-browser and cross-device compatibility."
+    }
+  ],
+  "about": {
+    "text": "Hi, I'm Ritin Tiwari from Jabalpur, a B.Tech Computer Science graduate (2023). Currently, I'm working as a Web Developer at Codeholic IT Services, after completing my internship as a React Developer Intern at Wooshelf Pvt Ltd. I enjoy solving problems, creating user-centric applications, and exploring entrepreneurship. Outside of coding, I’m passionate about fitness, gaming, and traveling."
+  },
+  "contact": {
+    "email": "hello.ritintiwari@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/ritintiwari-dev",
+    "github": "https://github.com/rktiwari966"
+  }
+}

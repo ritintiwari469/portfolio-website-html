@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ritin Tiwari | Frontend Developer | React.js | WordPress</title>
+  <meta name="description"
+    content="Portfolio of Ritin Tiwari — Frontend developer (React.js, WordPress). Building fast, responsive web apps and websites." />
+  <meta name="keywords"
+    content="Frontend Developer, ReactJS Developer, WordPress Developer, Web Developer, Ritin Tiwari" />
+  <meta name="author" content="Ritin Tiwari" />
+  <link rel="canonical" href="https://ritintiwari.vercel.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ritin Tiwari | Frontend Developer" />
+  <meta property="og:description" content="Portfolio of Ritin Tiwari — Frontend developer (React.js, WordPress)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="./images/ritintiwari.jpg" />
+
+  <link rel="icon" href="./images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <style>
+    /* ----- CSS same as your previous setup ----- */
+    :root {
+      --bg-1: #f5f5ff;
+      --bg-2: #fff;
+      --accent: #7f00ff;
+      --accent-2: #c86bfa;
+      --text: #2f3f44;
+      --muted: #6d7a81;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      --radius: 12px;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2) 50%, #f7ecff 100%);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* NAV */
+    nav {
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand b {
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: none;
+      gap: 20px;
+    }
+
+    .nav-actions a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .nav-actions a:hover,
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Mobile menu */
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100vh;
+      background: #fff;
+      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      transition: right 0.3s ease-in-out;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-links.open {
+      right: 0;
+    }
+
+    .nav-links a {
+      padding: 12px 0;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 80px 20px;
+      display: grid;
+      gap: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      margin: 0 0 10px 0;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .hero #heroDesc {
+      margin-bottom: 12px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .hero .role {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2rem;
+      min-height: 32px;
+      display: inline-block;
+    }
+
+    .hero-cta {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(45deg, var(--accent), var(--accent-2));
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #ddd;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-photo img {
+      border-radius: 50%;
+      border: 6px solid rgba(127, 0, 255, 0.16);
+      box-shadow: 0 12px 35px rgba(127, 0, 255, 0.15);
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    /* Sections */
+    section {
+      max-width: var(--max-width);
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+    }
+
+    .thumb {
+      border-radius: 8px;
+      margin-bottom: 10px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .project-actions {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .link-primary {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .read-more-btn {
+      border: none;
+      background: none;
+      color: var(--accent);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    input,
+    textarea {
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    button[type="submit"]:hover {
+      background: #5e00c7;
+    }
+
+    .form-status {
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--accent);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 8px;
+    }
+
+    /* Responsive */
+    @media(min-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr 320px;
+        align-items: center;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+    }
+
+    @media(min-width: 1024px) {
+      .nav-actions {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .hero-photo img {
+        width: 280px;
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">Portfolio<b>.</b></div>
+      <div class="nav-actions">
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="menu-toggle" aria-label="Menu"
+        onclick="document.getElementById('mobileNav').classList.toggle('open')">☰</button>
+    </div>
+    <div class="nav-links" id="mobileNav">
+      <a href="#skills" onclick="this.parentElement.classList.remove('open')">Skills</a>
+      <a href="#projects" onclick="this.parentElement.classList.remove('open')">Projects</a>
+      <a href="#about" onclick="this.parentElement.classList.remove('open')">About</a>
+      <a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Hi, I'm <span id="heroName">Ritin Tiwari</span></h1>
+      <div id="heroDesc">Frontend Developer specializing in React.js & WordPress</div>
+      <div class="role" id="heroRole"></div>
+      <div class="hero-cta">
+        <a href="#" id="cvLink" class="btn" download>Download CV</a>
+        <a href="#contact" class="btn secondary">Hire Me</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img id="heroImage" src="./images/ritintiwari.jpg" alt="Profile picture of Ritin Tiwari" loading="lazy"
+        decoding="async">
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="grid" id="skillsGrid"></div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid" id="projectsGrid"></div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p id="aboutText"></p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2 style="text-align: center;">Contact Me</h2>
+    <form id="contactForm">
+      <input id="name" type="text" name="from_name" placeholder="Your name" required>
+      <input id="email" type="email" name="from_email" placeholder="Your email" required>
+      <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+      <button type="submit">Send Message</button>
+      <div class="form-status" id="formStatus"></div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© <span id="year"></span> Ritin Tiwari — Frontend Developer</p>
+    <div id="footerLinks"></div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <script>
+    // Load data from JSON
+    fetch('./data.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('heroName').textContent = data.hero.name;
+        document.getElementById('heroDesc').textContent = data.hero.description;
+        document.getElementById('heroImage').src = data.hero.image;
+        document.getElementById('cvLink').href = data.hero.cv;
+
+        new Typed('#heroRole', {
+          strings: data.hero.roles,
+          typeSpeed: 70,
+          backSpeed: 70,
+          backDelay: 1600,
+          loop: true,
+          smartBackspace: false,
+          showCursor: true,
+          cursorChar: '|'
+        });
+
+        const sg = document.getElementById('skillsGrid');
+        sg.innerHTML = '';
+        data.skills.forEach(s => {
+          sg.innerHTML += `<div class="card"><h3>${s.title}</h3><p>${s.items.join(', ')}</p></div>`;
+        });
+
+        const pg = document.getElementById('projectsGrid');
+        pg.innerHTML = '';
+        data.projects.forEach((p, i) => {
+          const full = p.description;
+          const short = full.length > 130 ? full.slice(0, 130) + '...' : full;
+          pg.innerHTML += `
+            <div class="card">
+              <img class="thumb" src="${p.image}" alt="${p.title}" loading="lazy" decoding="async">
+              <h3><a class="link-primary" href="${p.link}" target="_blank">${p.title}</a></h3>
+              <p id="desc-${i}">${short}</p>
+              <div class="project-actions">
+                ${full.length > 130 ? `<button class="read-more-btn" onclick="toggleDesc(${i}, \`${full.replace(/`/g, '\\`')}\`)">Read More</button>` : ''}
+                <a class="link-primary" href="${p.link}" target="_blank">View</a>
+              </div>
+            </div>`;
+        });
+
+        document.getElementById('aboutText').textContent = data.about.text;
+
+        const social = `
+          <a href="${data.contact.linkedin}" target="_blank"><i class="fa fa-linkedin"></i></a>
+          <a href="${data.contact.github}" target="_blank"><i class="fa fa-github"></i></a>
+          <a href="mailto:${data.contact.email}"><i class="fa fa-envelope"></i></a>`;
+        document.getElementById('footerLinks').innerHTML = social;
+        document.getElementById('year').textContent = new Date().getFullYear();
+      });
+
+    function toggleDesc(i, full) {
+      const d = document.getElementById('desc-' + i);
+      const btn = d.nextElementSibling.querySelector('.read-more-btn');
+      if (btn.textContent === 'Read More') { d.textContent = full; btn.textContent = 'Read Less'; }
+      else { d.textContent = full.slice(0, 130) + '...'; btn.textContent = 'Read More'; }
+    }
+
+    // Contact form via serverless function
+    document.getElementById('contactForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Sending...';
+
+      const body = {
+        from_name: document.getElementById('name').value,
+        from_email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        to_name: 'Ritin'
+      };
+
+      try {
+        const res = await fetch('/api/sendEmail', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          status.textContent = '✅ Message sent!';
+          e.target.reset();
+        } else {
+          status.textContent = '❌ Failed to send. Try again.';
+        }
+      } catch (err) {
+        status.textContent = '❌ Error sending message.';
+      }
+    });
+  </script>
+</body>
+
+</html>

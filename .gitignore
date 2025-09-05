@@ -1,0 +1,21 @@
+# Node dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Netlify functions cache
+.functions/
+
+# Build directories
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
